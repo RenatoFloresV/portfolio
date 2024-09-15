@@ -1,0 +1,19 @@
+{
+  "appTitle": "My Portfolio",
+  "home": "Home",
+  "about": "About",
+  "projects": "Projects",
+  "contact": "Contact",
+  "search": "Search...",
+  "welcomeMessage": "Welcome to my portfolio!",
+  "description": "Here you can find my latest projects and information about me.",
+  "projectTitle": "Project Title",
+  "projectDescription": "Description of the project goes here.",
+  "contactInfo": "You can reach me via email at example@example.com.",
+  "languageSwitch": "Switch Language",
+  "english": "English",
+  "spanish": "Spanish",
+  "noResults": "No results found.",
+  "shortEnglish": "EN",
+  "shortSpanish": "ES"
+}

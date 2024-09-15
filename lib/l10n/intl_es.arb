@@ -1,0 +1,19 @@
+{
+  "appTitle": "Mi Portafolio",
+  "home": "Inicio",
+  "about": "Sobre mí",
+  "projects": "Proyectos",
+  "contact": "Contacto",
+  "search": "Buscar...",
+  "welcomeMessage": "¡Bienvenido a mi portafolio!",
+  "description": "Aquí puedes encontrar mis últimos proyectos e información sobre mí.",
+  "projectTitle": "Título del Proyecto",
+  "projectDescription": "Descripción del proyecto aquí.",
+  "contactInfo": "Puedes contactarme por correo electrónico a ejemplo@example.com.",
+  "languageSwitch": "Cambiar Idioma",
+  "english": "Inglés",
+  "spanish": "Español",
+  "noResults": "No se encontraron resultados.",
+  "shortEnglish": "",
+  "shortSpanish": "ESP"
+}

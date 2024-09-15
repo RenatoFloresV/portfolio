@@ -1,0 +1,36 @@
+name: portfolio
+description: "A new Flutter project."
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  bloc: ^8.1.4
+  cupertino_icons: ^1.0.8
+  dio: ^5.7.0
+  equatable: ^2.0.5
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.6
+  flutter_localizations:
+    sdk: flutter
+  flutter_modular: ^6.3.4
+  fpdart: ^1.1.0
+  geolocator: ^13.0.1
+
+  intl: ^0.19.0
+  intl_utils: ^2.8.7
+  portfolio_ds:
+    path: ../portfolio_ds
+
+dev_dependencies:
+  flutter_lints: ^4.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
