@@ -17,15 +17,23 @@ class BottomNavWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const ThemeButton(),
-          const WindowsButton(),
-          DsHorizontalSpace.sm,
-          const SearchTextField(),
-          const Spacer(),
-          const LanguageSelector()
+          const WeatherWidget(),
+          Row(
+            children: [
+              const WindowsButton(),
+              DsHorizontalSpace.sm,
+              const SearchTextField(),
+            ],
+          ),
+          const Row(
+            children: [
+              LanguageSelector(),
+              ThemeButton(),
+            ],
+          )
         ],
       ),
     );

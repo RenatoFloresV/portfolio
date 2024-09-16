@@ -199,6 +199,46 @@ class S {
       args: [],
     );
   }
+
+  /// `EN`
+  String get shortEnglish {
+    return Intl.message(
+      'EN',
+      name: 'shortEnglish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ES`
+  String get shortSpanish {
+    return Intl.message(
+      'ES',
+      name: 'shortSpanish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No weather data available.`
+  String get weatherNoData {
+    return Intl.message(
+      'No weather data available.',
+      name: 'weatherNoData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error getting weather data.`
+  String get failureWeather {
+    return Intl.message(
+      'Error getting weather data.',
+      name: 'failureWeather',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

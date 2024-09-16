@@ -1,6 +1,6 @@
 part of 'theme_bloc.dart';
 
-class ThemeEvent extends Equatable {
+abstract class ThemeEvent extends Equatable {
   const ThemeEvent();
 
   @override
@@ -9,7 +9,11 @@ class ThemeEvent extends Equatable {
 
 class ThemeChangeEvent extends ThemeEvent {
   final ThemeData theme;
+
   const ThemeChangeEvent({required this.theme});
+
   @override
   List<Object> get props => [theme];
 }
+
+class LoadThemeEvent extends ThemeEvent {}

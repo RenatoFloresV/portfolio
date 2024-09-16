@@ -15,5 +15,7 @@
   "spanish": "Español",
   "noResults": "No se encontraron resultados.",
   "shortEnglish": "",
-  "shortSpanish": "ESP"
+  "shortSpanish": "ESP",
+  "weatherNoData": "No hay datos de clima disponible.",
+  "failureWeather": "Error al obtener datos del clima."
 }

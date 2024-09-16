@@ -4,3 +4,5 @@ export 'windows.button.dart';
 
 export 'language_select.dart';
 export 'theme_button.dart';
+
+export 'geolocator/weather.widget.dart';

@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'core/local_storage/local_storage.dart';
 import 'src/app.dart';
 import 'src/module.dart';
 
@@ -14,7 +16,7 @@ Future<void> main() async {
     () async {
       WidgetsFlutterBinding.ensureInitialized();
 
-      const isRelease = bool.fromEnvironment('dart.vm.product');
+      // const isRelease = bool.fromEnvironment('dart.vm.product');
 
       runApp(
         SafeArea(

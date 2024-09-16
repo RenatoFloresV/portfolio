@@ -1,5 +1,4 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:portfolio/core/http/domain/entities/failure_http.dart';
 import 'package:portfolio/core/http/http.dart';
 import 'package:portfolio/global/widgets/geolocator/domain/domain.dart';
 
@@ -11,22 +10,22 @@ class WeatherRepositoryImpl extends WeatherRepository {
   final PortfolioHttp http;
 
   @override
-  Future<Either<PortfolioResponseError, bool>> getWeather({
+  Future<Either<PortfolioResponseError, WeatherData>> getWeather({
     required String lat,
     required String lon,
   }) async {
-    const String apiKey = 'b3f9d3d3e5b0d7b7b0d7b7b0d7b7b7b0';
-    final res = await http.put(
-        'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&units=metric&appid=$apiKey');
+    const String apiKey = String.fromEnvironment('API_KEY');
+
+    final res = await http.get(
+        'http://api.weatherapi.com/v1/current.json?key=$apiKey&q=$lat,$lon&aqi=no');
 
     return res.match(
       (l) {
         return Either.left(l);
       },
       (r) {
-        return Either.of(
-          r.payload['passwordChanged'] ?? false,
-        );
+        final weatherData = WeatherData.fromJson(r.payload);
+        return Either.of(weatherData);
       },
     );
   }

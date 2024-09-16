@@ -59,9 +59,7 @@ class _LanguageSelectorState extends State<LanguageSelector> {
 
     return InkWell(
       onTap: () {
-        context
-            .read<LanguageBloc>()
-            .add(LanguageChangeEvent(language: languageCode));
+        context.read<LanguageBloc>().add(LanguageChangeEvent(languageCode));
         _hideOverlay();
       },
       child: Container(

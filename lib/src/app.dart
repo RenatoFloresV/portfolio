@@ -5,6 +5,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:portfolio/generated/l10n.dart';
 import 'package:portfolio_ds/lib.dart';
 
+import '../global/widgets/geolocator/bloc_weather/weather_bloc.dart';
+import 'home/presentation/bloc_icons/icons_bloc.dart';
 import 'home/presentation/bloc_language/language_bloc.dart';
 import 'home/presentation/bloc_theme/theme_bloc.dart'; // Asegúrate de que los archivos generados estén correctamente importados
 
@@ -51,12 +53,12 @@ class _MaterialRouter extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => Modular.get<LanguageBloc>()),
+        BlocProvider(create: (context) => Modular.get<ThemeBloc>()),
         BlocProvider(
-          create: (context) => LanguageBloc(),
-        ),
-        BlocProvider(
-          create: (context) => ThemeBloc(),
-        ),
+            create: (context) => Modular.get<WeatherBloc>()
+              ..add(const GetCurrentLocationEvent())),
+        BlocProvider(create: (context) => Modular.get<IconBloc>()),
       ],
       child: BlocBuilder<LanguageBloc, LanguageState>(
         builder: (context, languageState) {

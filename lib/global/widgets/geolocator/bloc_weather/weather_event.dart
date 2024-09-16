@@ -1,15 +1,22 @@
 part of 'weather_bloc.dart';
 
-class ThemeEvent extends Equatable {
-  const ThemeEvent();
+class WeatherEvent extends Equatable {
+  const WeatherEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class ThemeChangeEvent extends ThemeEvent {
-  final ThemeData theme;
-  const ThemeChangeEvent({required this.theme});
+class LoadWeatherEvent extends WeatherEvent {
+  final String lat;
+  final String lon;
+  const LoadWeatherEvent({required this.lat, required this.lon});
   @override
-  List<Object> get props => [theme];
+  List<Object> get props => [lat, lon];
+}
+
+class GetCurrentLocationEvent extends WeatherEvent {
+  const GetCurrentLocationEvent();
+  @override
+  List<Object> get props => [];
 }

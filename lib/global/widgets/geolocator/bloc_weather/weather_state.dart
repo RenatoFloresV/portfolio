@@ -1,28 +1,36 @@
 part of 'weather_bloc.dart';
 
-enum ThemeStatus {
+enum WeatherStatus {
   none,
   initial,
+  showLoading,
+  hideLoading,
   success,
   error,
 }
 
-class ThemeState extends Equatable {
-  const ThemeState({required this.themeMode, required this.status});
+class WeatherState extends Equatable {
+  const WeatherState(
+      {required this.weatherData,
+      required this.status,
+      required this.position});
 
-  final ThemeData themeMode;
-  final ThemeStatus status;
+  final WeatherData weatherData;
+  final WeatherStatus status;
+  final Position? position;
 
-  ThemeState copyWith({
-    ThemeData? themeMode,
-    ThemeStatus? status,
+  WeatherState copyWith({
+    WeatherData? weatherData,
+    WeatherStatus? status,
+    Position? position,
   }) {
-    return ThemeState(
-      themeMode: themeMode ?? this.themeMode,
-      status: status ?? ThemeStatus.none,
+    return WeatherState(
+      weatherData: weatherData ?? this.weatherData,
+      status: status ?? WeatherStatus.none,
+      position: position ?? this.position,
     );
   }
 
   @override
-  List<Object> get props => [themeMode];
+  List<Object> get props => [weatherData, status];
 }

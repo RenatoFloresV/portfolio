@@ -30,6 +30,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "description": MessageLookupByLibrary.simpleMessage(
             "Aquí puedes encontrar mis últimos proyectos e información sobre mí."),
         "english": MessageLookupByLibrary.simpleMessage("Inglés"),
+        "failureWeather": MessageLookupByLibrary.simpleMessage(
+            "Error al obtener datos del clima."),
         "home": MessageLookupByLibrary.simpleMessage("Inicio"),
         "languageSwitch":
             MessageLookupByLibrary.simpleMessage("Cambiar Idioma"),
@@ -41,7 +43,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Título del Proyecto"),
         "projects": MessageLookupByLibrary.simpleMessage("Proyectos"),
         "search": MessageLookupByLibrary.simpleMessage("Buscar..."),
+        "shortEnglish": MessageLookupByLibrary.simpleMessage(""),
+        "shortSpanish": MessageLookupByLibrary.simpleMessage("ESP"),
         "spanish": MessageLookupByLibrary.simpleMessage("Español"),
+        "weatherNoData": MessageLookupByLibrary.simpleMessage(
+            "No hay datos de clima disponible."),
         "welcomeMessage":
             MessageLookupByLibrary.simpleMessage("¡Bienvenido a mi portafolio!")
       };

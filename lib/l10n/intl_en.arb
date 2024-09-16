@@ -15,5 +15,7 @@
   "spanish": "Spanish",
   "noResults": "No results found.",
   "shortEnglish": "EN",
-  "shortSpanish": "ES"
+  "shortSpanish": "ES",
+  "weatherNoData": "No weather data available.",
+  "failureWeather": "Error getting weather data."
 }

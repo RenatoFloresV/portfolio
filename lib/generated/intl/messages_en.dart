@@ -30,6 +30,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "description": MessageLookupByLibrary.simpleMessage(
             "Here you can find my latest projects and information about me."),
         "english": MessageLookupByLibrary.simpleMessage("English"),
+        "failureWeather":
+            MessageLookupByLibrary.simpleMessage("Error getting weather data."),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "languageSwitch":
             MessageLookupByLibrary.simpleMessage("Switch Language"),
@@ -39,7 +41,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "projectTitle": MessageLookupByLibrary.simpleMessage("Project Title"),
         "projects": MessageLookupByLibrary.simpleMessage("Projects"),
         "search": MessageLookupByLibrary.simpleMessage("Search..."),
+        "shortEnglish": MessageLookupByLibrary.simpleMessage("EN"),
+        "shortSpanish": MessageLookupByLibrary.simpleMessage("ES"),
         "spanish": MessageLookupByLibrary.simpleMessage("Spanish"),
+        "weatherNoData":
+            MessageLookupByLibrary.simpleMessage("No weather data available."),
         "welcomeMessage":
             MessageLookupByLibrary.simpleMessage("Welcome to my portfolio!")
       };
