@@ -3,6 +3,7 @@ import 'package:portfolio/core/http/http.dart';
 import 'package:portfolio/global/widgets/geolocator/bloc_weather/weather_bloc.dart';
 import 'package:portfolio/global/widgets/geolocator/data/data.dart';
 import 'package:portfolio/global/widgets/geolocator/domain/domain.dart';
+import 'package:portfolio/src/home/presentation/wallpaper_bloc/wallpaper_bloc.dart';
 
 import '../core/local_storage/local_storage.dart';
 import 'home/module.dart';
@@ -41,6 +42,12 @@ class AppModule extends Module {
 
     i.addSingleton<IconBloc>(
       IconBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
+    i.addSingleton<WallpaperBloc>(
+      WallpaperBloc.new,
       config: BindConfig(
         onDispose: (bloc) => bloc.close(),
       ),

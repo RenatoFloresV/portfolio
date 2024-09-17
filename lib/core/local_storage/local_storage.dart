@@ -10,15 +10,15 @@ class StorageService {
 
   static const String _themeKey = 'theme';
 
-  Future<void> saveThemeMode(ThemeData themeData) async {
+  Future<void> saveThemeMode(ThemeMode themeData) async {
     final prefs = await SharedPreferences.getInstance();
     final themeModeString = jsonEncode({
-      'brightness': themeData.brightness.toString(),
+      'brightness': themeData.toString(),
     });
     await prefs.setString(_themeKey, themeModeString);
   }
 
-  Future<ThemeData?> getThemeMode() async {
+  Future<ThemeMode?> getThemeMode() async {
     final prefs = await SharedPreferences.getInstance();
     final themeModeString = prefs.getString(_themeKey);
     if (themeModeString == null) {
@@ -28,8 +28,8 @@ class StorageService {
       final themeModeMap = jsonDecode(themeModeString);
       final brightness = themeModeMap['brightness'] as String;
       return brightness == 'Brightness.light'
-          ? ThemeData.light()
-          : ThemeData.dark();
+          ? ThemeMode.light
+          : ThemeMode.dark;
     } catch (e) {
       print('Error parsing theme mode: $e');
       return null;
@@ -67,5 +67,11 @@ class StorageService {
       print('Error al parsear posiciones de iconos: $e');
       return [];
     }
+  }
+
+  Future<void> saveWallpaperUrl(String url) async {}
+
+  Future<String?> getWallpaperUrl() async {
+    return null;
   }
 }

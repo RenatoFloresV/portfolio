@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_localizations/flutter_localizations.dart'; // Importar para localización
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:portfolio/generated/l10n.dart';
-import 'package:portfolio_ds/lib.dart';
 
 import '../global/widgets/geolocator/bloc_weather/weather_bloc.dart';
 import 'home/presentation/bloc_icons/icons_bloc.dart';
 import 'home/presentation/bloc_language/language_bloc.dart';
-import 'home/presentation/bloc_theme/theme_bloc.dart'; // Asegúrate de que los archivos generados estén correctamente importados
+import 'home/presentation/bloc_theme/theme_bloc.dart';
+import 'home/presentation/wallpaper_bloc/wallpaper_bloc.dart';
 
 class AppWidget extends StatefulWidget {
   const AppWidget({super.key});
@@ -46,11 +46,6 @@ class _MaterialRouter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final brightness = View.of(context).platformDispatcher.platformBrightness;
-
-    TextTheme textTheme = createTextTheme(context, "Noto Sans", "Noto Sans");
-    PortfolioMaterialTheme theme = PortfolioMaterialTheme(textTheme);
-
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => Modular.get<LanguageBloc>()),
@@ -58,12 +53,15 @@ class _MaterialRouter extends StatelessWidget {
         BlocProvider(
             create: (context) => Modular.get<WeatherBloc>()
               ..add(const GetCurrentLocationEvent())),
-        BlocProvider(create: (context) => Modular.get<IconBloc>()),
+        BlocProvider(
+            create: (context) =>
+                Modular.get<IconBloc>()..add(LoadInitialStateEvent())),
+        BlocProvider(create: (context) => Modular.get<WallpaperBloc>()),
       ],
       child: BlocBuilder<LanguageBloc, LanguageState>(
         builder: (context, languageState) {
           return BlocBuilder<ThemeBloc, ThemeState>(
-            builder: (context, state) {
+            builder: (context, themeState) {
               return MaterialApp.router(
                 localizationsDelegates: const [
                   S.delegate,
@@ -74,7 +72,9 @@ class _MaterialRouter extends StatelessWidget {
                 supportedLocales: S.delegate.supportedLocales,
                 title: 'Portfolio',
                 locale: Locale(languageState.language),
-                theme: state.themeMode,
+                theme: ThemeData.light(),
+                darkTheme: ThemeData.dark(),
+                themeMode: themeState.themeMode,
                 routerConfig: Modular.routerConfig,
                 debugShowCheckedModeBanner: false,
               );

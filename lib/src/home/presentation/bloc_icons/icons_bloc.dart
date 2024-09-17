@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/local_storage/local_storage.dart';
+import 'package:portfolio_ds/lib.dart';
 
 part 'icons_event.dart';
 part 'icons_state.dart';
@@ -10,30 +11,50 @@ class IconBloc extends Bloc<IconEvent, IconState> {
   final StorageService _storageService;
 
   IconBloc(this._storageService)
-      : super(const IconState(
+      : super(IconState(
           icons: [
-            Icons.folder,
-            Icons.videogame_asset,
-            Icons.tv,
-            Icons.shield,
-            Icons.music_note,
-            Icons.photo
+            null,
+            DsIcons.trash,
+            null,
+            null,
+            null,
+            null,
           ],
-          texts: [
+          texts: const [
             'Documents',
-            'Valorant',
+            'Recycle bin',
             'Rick and Morty',
             'Paladins',
             'Music',
             'Photos'
           ],
-          positions: [
+          positions: const [
             Offset(100, 100),
             Offset(200, 200),
             Offset(300, 300),
             Offset(400, 400),
             Offset(500, 500),
             Offset(600, 600),
+          ],
+          function: [
+            () {
+              print('Click en documents');
+            },
+            () {
+              print('Click en recycle bin');
+            },
+            () {
+              print('Click en rick and morty');
+            },
+            () {
+              print('Click en paladins');
+            },
+            () {
+              print('Click en music');
+            },
+            () {
+              print('Click en photos');
+            },
           ],
         )) {
     on<UpdateIconPositionEvent>(_onUpdateIconPosition);

@@ -30,5 +30,14 @@
 		<string>NSApplication</string>
 		<key>NSLocationUsageDescription</key>
 		<string>This app needs access to location.</string>
+		<key>NSAllowsArbitraryLoads</key>
+		<true />
+		<key>NSLocationAlwaysUsageDescription</key>
+		<string>Your application needs access to location at all times.</string>
+		<key>NSAppTransportSecurity</key>
+		<dict>
+			<key>NSAllowsArbitraryLoads</key>
+			<true />
+		</dict>
 	</dict>
 </plist>

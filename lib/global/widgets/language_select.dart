@@ -8,7 +8,7 @@ class LanguageSelector extends StatefulWidget {
   const LanguageSelector({super.key});
 
   @override
-  _LanguageSelectorState createState() => _LanguageSelectorState();
+  createState() => _LanguageSelectorState();
 }
 
 class _LanguageSelectorState extends State<LanguageSelector> {
@@ -54,8 +54,8 @@ class _LanguageSelectorState extends State<LanguageSelector> {
 
   Widget _buildLanguageOption(
       BuildContext context, String title, String languageCode) {
-    final isSelected = context
-        .select((LanguageBloc bloc) => bloc.state.language == languageCode);
+    final isSelected = context.select<LanguageBloc, bool>(
+        (bloc) => bloc.state.language == languageCode);
 
     return InkWell(
       onTap: () {
