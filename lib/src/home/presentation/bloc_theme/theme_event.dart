@@ -8,7 +8,7 @@ abstract class ThemeEvent extends Equatable {
 }
 
 class ThemeChangeEvent extends ThemeEvent {
-  final ThemeData theme;
+  final ThemeMode theme;
 
   const ThemeChangeEvent({required this.theme});
 

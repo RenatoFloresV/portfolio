@@ -3,9 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import 'core/local_storage/local_storage.dart';
 import 'src/app.dart';
 import 'src/module.dart';
 

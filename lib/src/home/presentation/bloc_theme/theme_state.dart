@@ -2,19 +2,19 @@ part of 'theme_bloc.dart';
 
 enum ThemeStatus {
   none,
-  initial,
-  success,
+  dark,
+  light,
   error,
 }
 
 class ThemeState extends Equatable {
   const ThemeState({required this.themeMode, required this.status});
 
-  final ThemeData themeMode;
+  final ThemeMode themeMode;
   final ThemeStatus status;
 
   ThemeState copyWith({
-    ThemeData? themeMode,
+    ThemeMode? themeMode,
     ThemeStatus? status,
   }) {
     return ThemeState(
