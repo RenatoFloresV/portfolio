@@ -10,18 +10,18 @@ abstract class WindowEvent extends Equatable {
 class ShowWindowEvent extends WindowEvent {
   final String url;
   final String id;
+  final DsIconData? icon;
   final String name;
-  final DsIconData icon;
 
   const ShowWindowEvent({
     required this.url,
     required this.id,
-    required this.name,
     required this.icon,
+    required this.name,
   });
 
   @override
-  List<Object> get props => [url, id, name, icon];
+  List<Object> get props => [url, id, name];
 }
 
 class CloseWindowEvent extends WindowEvent {
@@ -46,15 +46,6 @@ class RestoreWindowEvent extends WindowEvent {
   final String id;
 
   const RestoreWindowEvent(this.id);
-
-  @override
-  List<Object> get props => [id];
-}
-
-class SelectWindowEvent extends WindowEvent {
-  final String id;
-
-  const SelectWindowEvent(this.id);
 
   @override
   List<Object> get props => [id];
