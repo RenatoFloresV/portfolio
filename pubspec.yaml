@@ -6,7 +6,7 @@ publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.5.3
+  sdk: ^3.5.2
 
 dependencies:
   awesome_dio_interceptor: ^1.2.0
@@ -27,6 +27,7 @@ dependencies:
   portfolio_ds:
     path: ../portfolio_ds
   shared_preferences: ^2.3.2
+  webview_flutter: ^4.9.0
 
 dev_dependencies:
   flutter_lints: ^4.0.0

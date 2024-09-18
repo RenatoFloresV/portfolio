@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:portfolio/global/widgets/bottom_nav.widget.dart';
+import 'package:portfolio/global/widgets/widget.dart';
 import 'package:portfolio/src/_widgets/folder.widget.dart';
-import 'package:portfolio/src/home/presentation/wallpaper_bloc/wallpaper_bloc.dart';
-import 'package:portfolio_ds/lib.dart';
+import 'package:portfolio_ds/portfolio_ds.dart';
 
+import '../../../_widgets/web_view.widget.dart';
 import '../bloc_icons/icons_bloc.dart';
+import '../bloc_window/window_bloc.dart';
+import '../wallpaper_bloc/wallpaper_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -45,11 +46,27 @@ class HomeScreen extends StatelessWidget {
                       childWhenDragging: Container(),
                       child: GestureDetector(
                         onTap: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                                content:
-                                    DsText('${state.texts[index]} presionado')),
-                          );
+                          if (index == 2) {
+                            context.read<WindowBloc>().add(
+                                  ShowWindowEvent(
+                                    url:
+                                        'https://animated-liger-6fba84.netlify.app',
+                                    id: 'react-window',
+                                    name: 'React Window',
+                                    icon: state.icons[index],
+                                  ),
+                                );
+                          } else if (index == 3) {
+                            context.read<WindowBloc>().add(
+                                  ShowWindowEvent(
+                                    url:
+                                        'https://boisterous-capybara-db9d88.netlify.app',
+                                    id: 'flutter-examples',
+                                    name: 'Flutter Examples',
+                                    icon: state.icons[index],
+                                  ),
+                                );
+                          }
                         },
                         child: FolderWidget(
                           name: state.texts[index],
@@ -67,6 +84,34 @@ class HomeScreen extends StatelessWidget {
                     ),
                   );
                 }),
+              );
+            },
+          ),
+          BlocBuilder<WindowBloc, WindowState>(
+            builder: (context, state) {
+              return Stack(
+                children: state.openWindows.map((window) {
+                  return WebProjectWindow(
+                    key: ValueKey(window.id),
+                    url: window.url,
+                    isMinimized: window.isMinimized,
+                    onClose: () {
+                      context
+                          .read<WindowBloc>()
+                          .add(CloseWindowEvent(window.id));
+                    },
+                    onMinimize: () {
+                      context
+                          .read<WindowBloc>()
+                          .add(MinimizeWindowEvent(window.id));
+                    },
+                    onRestore: () {
+                      context
+                          .read<WindowBloc>()
+                          .add(RestoreWindowEvent(window.id));
+                    },
+                  );
+                }).toList(),
               );
             },
           ),

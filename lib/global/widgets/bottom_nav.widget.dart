@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:portfolio/src/home/presentation/bloc_window/window_bloc.dart';
 import 'package:portfolio_ds/lib.dart';
 
 import 'widget.dart';
@@ -9,6 +10,8 @@ class BottomNavWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final windowState = context.watch<WindowBloc>().state;
+
     return Container(
       height: 60,
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -21,6 +24,38 @@ class BottomNavWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const WeatherWidget(),
+          const Spacer(),
+          Expanded(
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: windowState.openWindows
+                  .where((window) => window.isMinimized)
+                  .length,
+              itemBuilder: (context, index) {
+                final minimizedWindow = windowState.openWindows
+                    .where((window) => window.isMinimized)
+                    .toList()[index];
+                return GestureDetector(
+                  onTap: () {
+                    context
+                        .read<WindowBloc>()
+                        .add(RestoreWindowEvent(minimizedWindow.id));
+                  },
+                  child: Tooltip(
+                    message: minimizedWindow.name,
+                    child: DsBtnIcon(
+                      icon: minimizedWindow.icon,
+                      onPressed: () {
+                        context
+                            .read<WindowBloc>()
+                            .add(RestoreWindowEvent(minimizedWindow.id));
+                      },
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
           Row(
             children: [
               const WindowsButton(),
@@ -28,12 +63,14 @@ class BottomNavWidget extends StatelessWidget {
               const SearchTextField(),
             ],
           ),
+          const Spacer(),
+          const Spacer(),
           const Row(
             children: [
               LanguageSelector(),
               ThemeButton(),
             ],
-          )
+          ),
         ],
       ),
     );

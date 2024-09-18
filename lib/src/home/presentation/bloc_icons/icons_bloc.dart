@@ -23,7 +23,7 @@ class IconBloc extends Bloc<IconEvent, IconState> {
           texts: const [
             'Documents',
             'Recycle bin',
-            'Rick and Morty',
+            'React',
             'Paladins',
             'Music',
             'Photos'

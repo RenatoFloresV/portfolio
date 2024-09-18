@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:portfolio/generated/l10n.dart';
+import 'package:portfolio/src/home/presentation/bloc_window/window_bloc.dart';
 
 import '../global/widgets/geolocator/bloc_weather/weather_bloc.dart';
 import 'home/presentation/bloc_icons/icons_bloc.dart';
@@ -57,6 +58,7 @@ class _MaterialRouter extends StatelessWidget {
             create: (context) =>
                 Modular.get<IconBloc>()..add(LoadInitialStateEvent())),
         BlocProvider(create: (context) => Modular.get<WallpaperBloc>()),
+        BlocProvider(create: (context) => Modular.get<WindowBloc>()),
       ],
       child: BlocBuilder<LanguageBloc, LanguageState>(
         builder: (context, languageState) {
