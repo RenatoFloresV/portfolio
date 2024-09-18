@@ -23,7 +23,7 @@ class BottomNavWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // const WeatherWidget(),
+          const WeatherWidget(),
           const Spacer(),
           Expanded(
             child: ListView.builder(
