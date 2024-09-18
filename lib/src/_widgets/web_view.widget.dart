@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:portfolio/src/home/presentation/bloc_window/window_bloc.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'windows_view/window_view.dart';
+import 'windows_view/window.content.dart';
 
 class WebProjectWindow extends StatefulWidget {
+  final String id;
   final String url;
   final bool isMinimized;
   final VoidCallback onClose;
   final VoidCallback onMinimize;
   final VoidCallback onRestore;
+  final VoidCallback onSelect;
+  final Offset position;
 
   const WebProjectWindow({
     super.key,
+    required this.id,
     required this.url,
     required this.isMinimized,
     required this.onClose,
     required this.onMinimize,
     required this.onRestore,
+    required this.onSelect,
+    required this.position,
   });
 
   @override
@@ -28,7 +36,7 @@ class _WebProjectWindowState extends State<WebProjectWindow> {
   double _width = 600;
   double _height = 400;
   bool _isMaximized = false;
-  Offset _position = const Offset(50, 50); // Initial position
+  Offset _position = const Offset(50, 50);
   Offset _dragStart = Offset.zero;
 
   @override
@@ -37,6 +45,7 @@ class _WebProjectWindowState extends State<WebProjectWindow> {
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..loadRequest(Uri.parse(widget.url));
+    _position = widget.position;
   }
 
   @override
@@ -47,18 +56,28 @@ class _WebProjectWindowState extends State<WebProjectWindow> {
       right: _isMaximized ? 0 : null,
       bottom: _isMaximized ? 0 : null,
       child: widget.isMinimized
-          ? Container() // Minimized windows will be handled in BottomNavWidget
+          ? Container()
           : GestureDetector(
+              onTap: widget.onSelect,
               onPanStart: (details) {
                 setState(() {
                   _dragStart = details.globalPosition;
                 });
               },
               onPanUpdate: (details) {
-                setState(() {
-                  _position += details.globalPosition - _dragStart;
-                  _dragStart = details.globalPosition;
-                });
+                if (!_isMaximized) {
+                  setState(() {
+                    _position += details.globalPosition - _dragStart;
+                    _dragStart = details.globalPosition;
+                  });
+                }
+                context.read<WindowBloc>().add(
+                      UpdateWindowPositionEvent(
+                        id: widget.id,
+                        newPosition: _position +=
+                            details.globalPosition - _dragStart,
+                      ),
+                    );
               },
               child: Stack(
                 children: [
@@ -112,7 +131,6 @@ class _WebProjectWindowState extends State<WebProjectWindow> {
     setState(() {
       _isMaximized = !_isMaximized;
       if (_isMaximized) {
-        // Reset position when maximizing
         _position = Offset.zero;
       }
     });

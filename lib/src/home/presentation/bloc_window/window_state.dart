@@ -32,34 +32,43 @@ class WindowState extends Equatable {
 class WindowData extends Equatable {
   final String url;
   final String id;
-  final bool isMinimized;
   final DsIconData icon;
   final String name;
+  final bool isMinimized;
+  final double zIndex;
+  final Offset position;
 
   const WindowData({
     required this.url,
     required this.id,
-    this.isMinimized = false,
     required this.icon,
     required this.name,
+    required this.isMinimized,
+    required this.zIndex,
+    required this.position,
   });
 
   WindowData copyWith({
     String? url,
     String? id,
-    bool? isMinimized,
     DsIconData? icon,
     String? name,
+    bool? isMinimized,
+    double? zIndex,
+    Offset? position,
   }) {
     return WindowData(
       url: url ?? this.url,
       id: id ?? this.id,
-      isMinimized: isMinimized ?? this.isMinimized,
       icon: icon ?? this.icon,
       name: name ?? this.name,
+      isMinimized: isMinimized ?? this.isMinimized,
+      zIndex: zIndex ?? this.zIndex,
+      position: position ?? this.position,
     );
   }
 
   @override
-  List<Object?> get props => [url, id, isMinimized, icon, name];
+  List<Object?> get props =>
+      [url, id, icon, name, isMinimized, zIndex, position];
 }

@@ -50,3 +50,25 @@ class RestoreWindowEvent extends WindowEvent {
   @override
   List<Object> get props => [id];
 }
+
+class SelectWindowEvent extends WindowEvent {
+  final String id;
+
+  const SelectWindowEvent({required this.id});
+
+  @override
+  List<Object> get props => [id];
+}
+
+class UpdateWindowPositionEvent extends WindowEvent {
+  final String id;
+  final Offset newPosition;
+
+  const UpdateWindowPositionEvent({
+    required this.id,
+    required this.newPosition,
+  });
+
+  @override
+  List<Object> get props => [id, newPosition];
+}

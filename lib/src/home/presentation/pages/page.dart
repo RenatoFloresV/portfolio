@@ -89,12 +89,18 @@ class HomeScreen extends StatelessWidget {
           ),
           BlocBuilder<WindowBloc, WindowState>(
             builder: (context, state) {
+              final sortedWindows = List<WindowData>.from(state.openWindows)
+                ..sort((a, b) => a.zIndex.compareTo(b.zIndex));
               return Stack(
-                children: state.openWindows.map((window) {
+                children: sortedWindows
+                    .where((window) => !window.isMinimized)
+                    .map((window) {
                   return WebProjectWindow(
+                    id: window.id,
                     key: ValueKey(window.id),
                     url: window.url,
                     isMinimized: window.isMinimized,
+                    position: window.position,
                     onClose: () {
                       context
                           .read<WindowBloc>()
@@ -109,6 +115,11 @@ class HomeScreen extends StatelessWidget {
                       context
                           .read<WindowBloc>()
                           .add(RestoreWindowEvent(window.id));
+                    },
+                    onSelect: () {
+                      context
+                          .read<WindowBloc>()
+                          .add(SelectWindowEvent(id: window.id));
                     },
                   );
                 }).toList(),
