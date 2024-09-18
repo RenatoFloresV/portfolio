@@ -98,9 +98,12 @@ class HomeScreen extends StatelessWidget {
                   return WebProjectWindow(
                     id: window.id,
                     key: ValueKey(window.id),
+                    size: window.size,
                     url: window.url,
                     isMinimized: window.isMinimized,
+                    isMaximized: window.isMaximized,
                     position: window.position,
+                    webViewController: window.controller,
                     onClose: () {
                       context
                           .read<WindowBloc>()

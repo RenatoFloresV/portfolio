@@ -26,49 +26,75 @@ class WindowState extends Equatable {
   }
 
   @override
-  List<Object> get props => [openWindows, minimizedWindows, status];
+  List<Object> get props => [
+        openWindows,
+        minimizedWindows,
+        status,
+      ];
 }
 
 class WindowData extends Equatable {
-  final String url;
   final String id;
+  final String url;
   final DsIconData icon;
   final String name;
   final bool isMinimized;
+  final bool isMaximized;
   final double zIndex;
   final Offset position;
+  final Size size;
+  final WebViewController? controller; // Agregado
 
   const WindowData({
-    required this.url,
     required this.id,
+    required this.url,
     required this.icon,
     required this.name,
     required this.isMinimized,
+    required this.isMaximized,
     required this.zIndex,
     required this.position,
+    required this.size,
+    this.controller, // Agregado
   });
 
   WindowData copyWith({
-    String? url,
     String? id,
+    String? url,
     DsIconData? icon,
     String? name,
     bool? isMinimized,
+    bool? isMaximized,
     double? zIndex,
     Offset? position,
+    Size? size,
+    WebViewController? controller, // Agregado
   }) {
     return WindowData(
-      url: url ?? this.url,
       id: id ?? this.id,
+      url: url ?? this.url,
       icon: icon ?? this.icon,
       name: name ?? this.name,
       isMinimized: isMinimized ?? this.isMinimized,
+      isMaximized: isMaximized ?? this.isMaximized,
       zIndex: zIndex ?? this.zIndex,
       position: position ?? this.position,
+      size: size ?? this.size,
+      controller: controller ?? this.controller, // Agregado
     );
   }
 
   @override
-  List<Object?> get props =>
-      [url, id, icon, name, isMinimized, zIndex, position];
+  List<Object?> get props => [
+        id,
+        url,
+        icon,
+        name,
+        isMinimized,
+        isMaximized,
+        zIndex,
+        position,
+        size,
+        controller
+      ];
 }

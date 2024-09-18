@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_ds/atoms/text/_generic.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WindowContent extends StatelessWidget {
@@ -32,7 +33,7 @@ class WindowContent extends StatelessWidget {
       child: Column(
         children: [
           AppBar(
-            title: const Text('Web Window'),
+            title: const DsText('Web Window'),
             actions: [
               IconButton(
                 icon: const Icon(Icons.minimize),

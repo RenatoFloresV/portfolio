@@ -72,3 +72,42 @@ class UpdateWindowPositionEvent extends WindowEvent {
   @override
   List<Object> get props => [id, newPosition];
 }
+
+class UpdateWindowSizeEvent extends WindowEvent {
+  final String id;
+  final Size newSize;
+
+  const UpdateWindowSizeEvent({
+    required this.id,
+    required this.newSize,
+  });
+
+  @override
+  List<Object> get props => [id, newSize];
+}
+
+class MaximizeWindowEvent extends WindowEvent {
+  final String id;
+  final BuildContext context;
+
+  const MaximizeWindowEvent({
+    required this.id,
+    required this.context,
+  });
+
+  @override
+  List<Object> get props => [id, context];
+}
+
+class UpdateWebViewControllerEvent extends WindowEvent {
+  final String id;
+  final WebViewController controller;
+
+  const UpdateWebViewControllerEvent({
+    required this.id,
+    required this.controller,
+  });
+
+  @override
+  List<Object> get props => [id, controller];
+}

@@ -2,11 +2,10 @@ name: portfolio
 description: "A new Flutter project."
 
 publish_to: "none"
-
-version: 1.0.0+1
+version: "2.0.2+2024091401" #usar formato YYYYMMDD##
 
 environment:
-  sdk: ^3.5.2
+  sdk: ">=3.0.5 <4.0.0"
 
 dependencies:
   awesome_dio_interceptor: ^1.2.0
@@ -24,10 +23,18 @@ dependencies:
   geolocator: ^13.0.1
   intl: ^0.19.0
   intl_utils: ^2.8.7
-  portfolio_ds:
-    path: ../portfolio_ds
   shared_preferences: ^2.3.2
   webview_flutter: ^4.9.0
+
+  # Uncomment the following lines to enable the 'portfolio_ds' package from your local machine.
+  # To set up the 'portfolio_ds' package, follow these step
+  # portfolio_ds:
+  #   path: ../portfolio_ds
+
+  portfolio_ds:
+    git:
+      url: https://github.com/RenatoFloresV/portfolio_ds.git
+      ref: main
 
 dev_dependencies:
   flutter_lints: ^4.0.0
